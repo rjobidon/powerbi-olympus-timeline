@@ -4,6 +4,7 @@ import { WeeksDetermintaionStandardsSettings } from "../settings/weeksDeterminta
 import { Calendar } from "./calendar";
 import { WeekStandards } from "./weekStandards";
 import { CalendarISO8061 } from "./calendarISO8061";
+import { CalendarOlympus } from "./calendarOlympus";
 
 export class CalendarFactory {
     public create(
@@ -13,14 +14,17 @@ export class CalendarFactory {
 
         let calendar: Calendar = null;
 
-        switch (weeksDetermintaionStandardsSettings.weekStandard) {
+        if (calendarSettings.olympusCalendar) {
+            calendar = new CalendarOlympus(calendarSettings, weekDaySettings);
+        } else {
+            switch (weeksDetermintaionStandardsSettings.weekStandard) {
             case WeekStandards.ISO8061:
                 calendar = new CalendarISO8061();
                 break;
             default:
                 calendar = new Calendar(calendarSettings, weekDaySettings)
+            }
         }
-
         return calendar;
     }
 }

@@ -1,3 +1,6 @@
+## 2.4.3
+* Add finance mode (finance month ends before calendar month)
+
 ## 2.4.2
 * Display Olympus fiscal years in quarter, month, week and day granularity (was on year granularity only)
 

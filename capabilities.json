@@ -93,6 +93,13 @@
             "displayName": "Fiscal Year",
             "displayNameKey": "Visual_FiscalYear",
             "properties": {
+                "olympusCalendar": {
+                    "displayName": "Olympus Calendar",
+                    "displayNameKey": "Olympus_Calendar",
+                    "type": {
+                        "bool": true
+                    }
+                },
                 "month": {
                     "displayName": "Month",
                     "displayNameKey": "Visual_Month",

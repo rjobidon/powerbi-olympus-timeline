@@ -53,5 +53,6 @@
 	"Visual_GranularityQuarterVisibility": "Quarter visibility",
 	"Visual_GranularityMonthVisibility": "Month visibility",
 	"Visual_GranularityWeekVisibility": "Week visibility",
-	"Visual_GranularityDayVisibility": "Day visibility"
+	"Visual_GranularityDayVisibility": "Day visibility",
+	"Olympus_Calendar": "Olympus Calendar"
 }

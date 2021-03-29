@@ -25,6 +25,7 @@
  */
 
 export class CalendarSettings {
-    public month: number = 3;
+    public olympusCalendar: Boolean = true;
+    public month: number = 3; // 3 = April
     public day: number = 1;
 }
