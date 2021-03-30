@@ -45,5 +45,6 @@
 	"Visual_DisplayAll": "Afficher tout",
 	"Visual_ForceSelection": "Forcer la sélection",
 	"Visual_CurrentPeriod": "Période actuelle",
-	"Visual_LatestAvailableDate": "Période disponible la plus récente"
+	"Visual_LatestAvailableDate": "Période disponible la plus récente",
+	"Olympus_Calendar": "Calendrier Olympus"
 }
