@@ -64,12 +64,9 @@ export class WeekGranularity extends GranularityBase {
 
     public splitDateForTitle(date: Date): (string | number)[] {
         const weekData = this.calendar.determineWeek(date);
-        const firstMonthOfYear = this.calendar.getFirstMonthOfYear();
-        const firstDayOfYear = this.calendar.getFirstDayOfYear();
-        const isOlympus = (firstMonthOfYear === 3 && firstDayOfYear === 1); 
         var year_number = weekData[1];
         var year_string = "";
-        if (isOlympus) {
+        if (this.calendar.getOlympusCalendar()) {
             year_number = year_number - 1;
             if (year_number <= 2020) {
                 year_number = year_number - 2020 + 153;
@@ -81,7 +78,7 @@ export class WeekGranularity extends GranularityBase {
         }
         return [
             `W${weekData[0]}`,
-            isOlympus ? year_string : year_number
+            this.calendar.getOlympusCalendar() ? year_string : year_number
         ];
     }
 

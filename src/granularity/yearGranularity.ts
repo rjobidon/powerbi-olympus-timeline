@@ -60,12 +60,9 @@ export class YearGranularity extends GranularityBase {
 
     public splitDate(date: Date): (string | number)[] {
 
-        const firstMonthOfYear = this.calendar.getFirstMonthOfYear();
-        const firstDayOfYear = this.calendar.getFirstDayOfYear();
-        const isOlympus = (firstMonthOfYear === 3 && firstDayOfYear === 1); 
         var year_number = this.calendar.determineYear(date);
         var year_string = "";
-        if (isOlympus) {
+        if (this.calendar.getOlympusCalendar()) {
             year_number = year_number - 1;
             if (year_number <= 2020) {
                 year_number = year_number - 2020 + 153;
@@ -75,7 +72,7 @@ export class YearGranularity extends GranularityBase {
                 year_string = `FY${year_number}`;
             }
         }
-        return [isOlympus ? year_string : year_number];
+        return [this.calendar.getOlympusCalendar() ? year_string : year_number];
     }
 
     public sameLabel(firstDatePeriod: ITimelineDatePeriod, secondDatePeriod: ITimelineDatePeriod): boolean {
@@ -87,13 +84,10 @@ export class YearGranularity extends GranularityBase {
             ? this.localizationManager.getDisplayName(this.localizationKey)
             : this.localizationKey;
 
-        const firstMonthOfYear = this.calendar.getFirstMonthOfYear();
-        const firstDayOfYear = this.calendar.getFirstDayOfYear();
-        const isOlympus = (firstMonthOfYear === 3 && firstDayOfYear === 1); 
         var year_number = datePeriod.year;
         var year_string = "";
 
-        if (isOlympus) {
+        if (this.calendar.getOlympusCalendar()) {
             year_number = year_number - 1;
             if (year_number <= 2020) {
                 year_number = year_number - 2020 + 153;

@@ -13,18 +13,15 @@ export class CalendarFactory {
         weekDaySettings: WeekDaySettings) : Calendar {
 
         let calendar: Calendar = null;
-
-        if (calendarSettings.olympusCalendar) {
-            calendar = new CalendarOlympus(calendarSettings, weekDaySettings);
-        } else {
-            switch (weeksDetermintaionStandardsSettings.weekStandard) {
-            case WeekStandards.ISO8061:
-                calendar = new CalendarISO8061();
-                break;
-            default:
-                calendar = new Calendar(calendarSettings, weekDaySettings)
-            }
+        
+        switch (weeksDetermintaionStandardsSettings.weekStandard) {
+        case WeekStandards.ISO8061:
+            calendar = new CalendarISO8061();
+            break;
+        default:
+            calendar = new Calendar(calendarSettings, weekDaySettings)
         }
+    
         return calendar;
     }
 }

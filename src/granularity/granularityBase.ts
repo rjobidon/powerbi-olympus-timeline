@@ -170,7 +170,8 @@ export class GranularityBase implements IGranularity {
     }
 
     public shortMonthName(date: Date): string {
-        return this.shortMonthFormatter.format(date);
+        date = this.calendar.getFinancialMonth(date);
+        return this.shortMonthFormatter.format(date)
     }
 
     public resetDatePeriods(): void {

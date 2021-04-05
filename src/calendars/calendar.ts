@@ -43,6 +43,8 @@ export interface IPeriodDates {
 export class Calendar {
     private static QuarterFirstMonths: number[] = [0, 3, 6, 9];
 
+    protected olympusCalendar: boolean;
+    protected financialMonths: boolean; 
     protected firstDayOfWeek: number;
     protected firstMonthOfYear: number;
     protected firstDayOfYear: number;
@@ -56,6 +58,8 @@ export class Calendar {
     constructor(calendarFormat: CalendarSettings, weekDaySettings: WeekDaySettings) {
         this.isDaySelection = weekDaySettings.daySelection;
         this.firstDayOfWeek = weekDaySettings.day;
+        this.olympusCalendar = (calendarFormat.month === 3) && (calendarFormat.day === 1);
+        this.financialMonths = calendarFormat.financialMonths;
         this.firstMonthOfYear = calendarFormat.month;
         this.firstDayOfYear = calendarFormat.day;
 
@@ -106,6 +110,14 @@ export class Calendar {
         }
 
         return [weeks, year];
+    }
+
+    public getOlympusCalendar(): boolean {
+        return this.olympusCalendar;
+    }
+
+    public getFinancialMonths(): boolean {
+        return this.financialMonths;
     }
 
     public getFirstDayOfWeek(): number {
@@ -170,12 +182,27 @@ export class Calendar {
         return { startDate, endDate };
     }
 
+    public getFinancialMonth(date: Date): Date {
+        const year: number = date.getFullYear();
+        let month: number = date.getMonth();
+        const day: number = date.getDate();
+        if (this.financialMonths) {
+            if ((month !== 4) && (day >= 28)) {
+                month = month - 1;
+            }
+        } 
+        return new Date(year, month, this.firstDayOfYear);
+    }
+
     public getMonthPeriod(date: Date): IPeriodDates {
         const year: number = date.getFullYear();
         const month: number = date.getMonth();
 
-        const startDate: Date = new Date(year, month, this.firstDayOfYear);
-        const endDate: Date = new Date(year, month + 1, this.firstDayOfYear);
+        //const startDate: Date = new Date(year, month, this.firstDayOfYear);
+        //const endDate: Date = new Date(year, month + 1, this.firstDayOfYear);
+
+        const startDate: Date = month == 4 ? new Date(year, month, this.firstDayOfYear) : new Date(year, month - 1, 28);
+        const endDate: Date = month == 3 ? new Date(year, month + 1, this.firstDayOfYear) : new Date(year, month, 28);
 
         return { startDate, endDate };
     }
