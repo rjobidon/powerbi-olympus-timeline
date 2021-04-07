@@ -67,7 +67,8 @@ export class DayGranularity extends GranularityBase {
         }
         return [
             this.shortMonthName(date),
-            date.getDate(),
+            // date.getDate(),
+            28,
             this.calendar.getOlympusCalendar() ? year_string : year_number,
         ];
     }

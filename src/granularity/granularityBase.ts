@@ -160,7 +160,8 @@ export class GranularityBase implements IGranularity {
     public splitDate(date: Date): (string | number)[] {
         return [
             this.shortMonthName(date),
-            date.getDate(),
+            // date.getDate(),
+            28,
             this.calendar.determineYear(date),
         ];
     }
